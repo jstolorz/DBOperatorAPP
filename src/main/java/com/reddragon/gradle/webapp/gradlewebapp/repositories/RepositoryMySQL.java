@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class RepositoryMySQL implements RepositoryDao {
 
     private SessionFactory factory;
@@ -16,12 +18,13 @@ public class RepositoryMySQL implements RepositoryDao {
 
         this.entities = entities;
 
-        factory = new Configuration().configure("hibernate.cfg.xml").
-                addAnnotatedClass(this.entities.getClass()).buildSessionFactory();
     }
 
     @Override
     public boolean saveObiect(Entities e) {
+
+        factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(this.entities.getClass()).buildSessionFactory();
 
         session = factory.getCurrentSession();
 
@@ -48,5 +51,39 @@ public class RepositoryMySQL implements RepositoryDao {
         }
 
     }
+
+    @Override
+    public List<Entities> queryAllObject() {
+
+        factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(this.entities.getClass()).buildSessionFactory();
+
+        session = factory.getCurrentSession();
+
+        List<Entities> entities = null;
+
+        try {
+
+            System.out.println("Quering Emplouee  .... ");
+
+            session.beginTransaction();
+
+            entities = session.createQuery("from "+ this.entities.getClass().getName() +"").getResultList();
+
+            session.getTransaction().commit();
+
+            System.out.println("Done!");
+
+            return entities;
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return entities;
+        }finally {
+            factory.close();
+        }
+
+    }
+
 
 }
