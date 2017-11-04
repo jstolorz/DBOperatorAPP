@@ -18,6 +18,7 @@ public class Employee implements Entities {
     }
 
     public void setId(Long id) {
+        if(id != null)
         this.id = id;
     }
 
@@ -26,7 +27,8 @@ public class Employee implements Entities {
     }
 
     public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+        if(first_name != null)
+          this.first_name = first_name;
     }
 
     public String getLast_name() {
@@ -34,7 +36,8 @@ public class Employee implements Entities {
     }
 
     public void setLast_name(String last_name) {
-        this.last_name = last_name;
+        if(last_name != null)
+         this.last_name = last_name;
     }
 
     public String getCompany() {
@@ -42,7 +45,8 @@ public class Employee implements Entities {
     }
 
     public void setCompany(String company) {
-        this.company = company;
+        if(company != null)
+         this.company = company;
     }
 
     @Override

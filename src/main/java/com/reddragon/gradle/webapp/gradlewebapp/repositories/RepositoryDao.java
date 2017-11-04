@@ -8,5 +8,7 @@ public interface RepositoryDao {
 
     boolean saveObiect(Entities e);
     boolean deleteObject(Long id);
+    boolean updateObject(Entities e, Long id);
     List<Entities> queryAllObject();
+
 }

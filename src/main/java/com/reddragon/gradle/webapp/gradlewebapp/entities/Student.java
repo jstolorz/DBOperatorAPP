@@ -7,9 +7,8 @@ import javax.persistence.*;
 public class Student implements Entities{
 
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -22,24 +21,13 @@ public class Student implements Entities{
 
     public Student(){}
 
-    public Student(int id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
 
-    public Student(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
+        if(id != null)
         this.id = id;
     }
 
@@ -48,7 +36,8 @@ public class Student implements Entities{
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        if(firstName != null)
+         this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -56,7 +45,8 @@ public class Student implements Entities{
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if(lastName != null)
+         this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -64,7 +54,8 @@ public class Student implements Entities{
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if(email != null)
+          this.email = email;
     }
 
     @Override
@@ -79,7 +70,7 @@ public class Student implements Entities{
 
     @Override
     public int hashCode() {
-        return id;
+        return Math.toIntExact(id);
     }
 
     @Override
