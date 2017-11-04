@@ -1,5 +1,6 @@
 package com.reddragon.gradle.webapp.gradlewebapp.controllers;
 
+import com.reddragon.gradle.webapp.gradlewebapp.entities.Car;
 import com.reddragon.gradle.webapp.gradlewebapp.entities.Employee;
 import com.reddragon.gradle.webapp.gradlewebapp.entities.Student;
 import com.reddragon.gradle.webapp.gradlewebapp.repositories.FactoryDao;
@@ -11,18 +12,23 @@ public class StartDbApp {
 
     public static void main(String[] args) {
 
-        Employee employee = new Employee();
+        Car car = new Car();
 
-        RepositoryDao repositoryDao = FactoryDao.getDatabase("MySQL",employee);
+        RepositoryDao repositoryDao = FactoryDao.getDatabase("MySQL",car);
 
+        car.setMarka("Opel");
+        car.setModel("Astra");
+        car.setVin("EDW12313321443FGG");
+
+        repositoryDao.saveObiect(car);
         //employee.setId(3l);
         //employee.setFirst_name("Paweł");
         //employee.setLast_name("Stalonn");
-        employee.setCompany("UPS");
+        //employee.setCompany("UPS");
 
-        System.out.println("===>> [" + employee.getFirst_name() + " ]");
+        //System.out.println("===>> [" + employee.getFirst_name() + " ]");
 
-        repositoryDao.updateObject(employee,3L);
+        //repositoryDao.updateObject(employee,3L);
         //repositoryDao.deleteObject(2L);
 
 
@@ -31,15 +37,15 @@ public class StartDbApp {
         //Student student = new Student("Akeksandra", "Stolorz",
         //"astolorz@gmail.com");
 
-        Student student = new Student();
+        //Student student = new Student();
 
-        RepositoryDao repositoryDao2 = FactoryDao.getDatabase("MySQL",student);
+        //RepositoryDao repositoryDao2 = FactoryDao.getDatabase("MySQL",student);
 
-        student.setEmail("dragon@gmail.com");
+        //student.setEmail("dragon@gmail.com");
 
-        System.out.println("\n\n\n");
+        //System.out.println("\n\n\n");
 
-        repositoryDao2.updateObject(student, 5l);
+        //repositoryDao2.updateObject(student, 5l);
         //repositoryDao2.saveObiect(student);
 
 
