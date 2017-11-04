@@ -7,5 +7,6 @@ import java.util.List;
 public interface RepositoryDao {
 
     boolean saveObiect(Entities e);
+    boolean deleteObject(Long id);
     List<Entities> queryAllObject();
 }

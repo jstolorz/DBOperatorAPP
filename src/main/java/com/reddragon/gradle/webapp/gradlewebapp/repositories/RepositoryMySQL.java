@@ -14,7 +14,7 @@ public class RepositoryMySQL implements RepositoryDao {
     private Session session;
     private Entities entities;
 
-    public RepositoryMySQL(Entities entities){
+    public RepositoryMySQL(Entities entities) {
 
         this.entities = entities;
 
@@ -30,7 +30,7 @@ public class RepositoryMySQL implements RepositoryDao {
 
         try {
 
-            System.out.println("Creating Emplouee  .... ");
+            System.out.println("Creating object  .... ");
 
 
             session.beginTransaction();
@@ -43,12 +43,46 @@ public class RepositoryMySQL implements RepositoryDao {
 
             return true;
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
-        }finally {
+        } finally {
             factory.close();
         }
+
+    }
+
+    @Override
+    public boolean deleteObject(Long id) {
+
+        factory = new Configuration().configure("hibernate.cfg.xml").
+                addAnnotatedClass(this.entities.getClass()).buildSessionFactory();
+
+        session = factory.getCurrentSession();
+
+        try {
+
+            System.out.println("Deleting object  .... ");
+
+            session.beginTransaction();
+
+            Entities e =  session.get(this.entities.getClass(), id);
+
+            session.delete(e);
+
+            session.getTransaction().commit();
+
+            System.out.println("Done!");
+
+            return true;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            factory.close();
+        }
+
 
     }
 
@@ -64,11 +98,11 @@ public class RepositoryMySQL implements RepositoryDao {
 
         try {
 
-            System.out.println("Quering Emplouee  .... ");
+            System.out.println("Quering objects  .... ");
 
             session.beginTransaction();
 
-            entities = session.createQuery("from "+ this.entities.getClass().getName() +"").getResultList();
+            entities = session.createQuery("from " + this.entities.getClass().getName() + "").getResultList();
 
             session.getTransaction().commit();
 
@@ -76,10 +110,10 @@ public class RepositoryMySQL implements RepositoryDao {
 
             return entities;
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             return entities;
-        }finally {
+        } finally {
             factory.close();
         }
 

@@ -19,8 +19,10 @@ public class StartDbApp {
 
 
 
-        //repositoryDao.saveObiect(employee);
+        //repositoryDao.saveObiect(employee)
+        repositoryDao.deleteObject(2L);
 
+        /*
         System.out.println(repositoryDao.queryAllObject());
 
         Student student = new Student("Akeksandra", "Stolorz",
@@ -34,6 +36,7 @@ public class StartDbApp {
 
 
         System.out.println(repositoryDao2.queryAllObject());
+        */
 
     }
 
