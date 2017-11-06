@@ -1,4 +1,4 @@
-package com.reddragon.gradle.webapp.gradlewebapp.controllers;
+package com.reddragon.gradle.webapp.gradlewebapp.mainapp;
 
 import com.reddragon.gradle.webapp.gradlewebapp.entities.Car;
 import com.reddragon.gradle.webapp.gradlewebapp.entities.Employee;
@@ -16,11 +16,11 @@ public class StartDbApp {
 
         RepositoryDao repositoryDao = FactoryDao.getDatabase("MySQL",car);
 
-        car.setMarka("Opel");
-        car.setModel("Astra");
+        //car.setMarka("Opel");
+        car.setModel("Astra E");
         car.setVin("EDW12313321443FGG");
 
-        repositoryDao.saveObiect(car);
+        repositoryDao.updateObject(car,1l);
         //employee.setId(3l);
         //employee.setFirst_name("Paweł");
         //employee.setLast_name("Stalonn");
@@ -31,15 +31,20 @@ public class StartDbApp {
         //repositoryDao.updateObject(employee,3L);
         //repositoryDao.deleteObject(2L);
 
+        Employee employee = new Employee();
 
-        //System.out.println(repositoryDao.queryAllObject());
+        RepositoryDao repositoryDao2 = FactoryDao.getDatabase("MySQL",employee);
+
+        System.out.println("\n\n\n");
+
+        System.out.println(repositoryDao2.queryAllObject());
 
         //Student student = new Student("Akeksandra", "Stolorz",
         //"astolorz@gmail.com");
 
-        //Student student = new Student();
+        Student student = new Student();
 
-        //RepositoryDao repositoryDao2 = FactoryDao.getDatabase("MySQL",student);
+        RepositoryDao repositoryDao3 = FactoryDao.getDatabase("MySQL",student);
 
         //student.setEmail("dragon@gmail.com");
 
@@ -48,8 +53,9 @@ public class StartDbApp {
         //repositoryDao2.updateObject(student, 5l);
         //repositoryDao2.saveObiect(student);
 
+        System.out.println("\n\n\n");
 
-        //System.out.println(repositoryDao2.queryAllObject());
+        System.out.println(repositoryDao3.queryAllObject());
 
 
     }
